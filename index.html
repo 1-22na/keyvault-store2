@@ -273,7 +273,7 @@
   <footer>
     <div class="footer-logo">🔑 KeyVault</div>
     <p>متجرك الرقمي الموثوق · تسليم فوري · ضمان استرداد كامل</p>
-    <div class="footer-links"><a>📱 واتساب</a><a>✈️ تيليغرام</a><a>📸 إنستغرام</a></div>
+    <div class="footer-links"><a href="https://wa.me/21693243981" target="_blank">📱 +216 93 243 981</a><a>✈️ تيليغرام</a><a href="https://instagram.com/1_22na" target="_blank">📸 1_22na</a><a>💬 1_22na</a></div>
     <div style="margin-top:.7rem;color:rgba(100,116,139,.4);font-size:.73rem">© 2025 KeyVault</div>
   </footer>
 </div>
@@ -560,12 +560,26 @@ function confirmOrder(){
   const t=document.getElementById('toast');
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3500);
+
+  const pkg=selProd.packages[selPkg];
+  const payMethod=[...document.querySelectorAll('.pay-btn')].find(b=>b.classList.contains('active'))?.textContent||'غير محدد';
+  const msg=
+    `🛒 *طلب جديد من KeyVault*\n\n`+
+    `🎮 *المنتج:* ${selProd.name}\n`+
+    `📦 *الباقة:* ${pkg.name}\n`+
+    `💵 *السعر:* $${pkg.usd} — ${toDT(pkg.usd)} DT\n`+
+    `💳 *طريقة الدفع:* ${payMethod}\n\n`+
+    `⚡ أرجو التأكيد والتسليم فوري!`;
+
+  setTimeout(()=>{
+    window.open('https://wa.me/21693243981?text='+encodeURIComponent(msg),'_blank');
+  },800);
 }
 function openCart(){
   if(cartCount===0){alert('السلة فارغة! تصفح المنتجات وأضف ما يعجبك.');return;}
-  alert(`🛒 لديك ${cartCount} منتج في السلة.\n\nتواصل معنا لإتمام الطلب:\n📱 واتساب\n✈️ تيليغرام @KeyVaultTN`);
+  window.open('https://wa.me/21693243981?text=مرحبا، عندي '+cartCount+' منتج في السلة وحاب نكمل الطلب 🛒','_blank');
 }
-function contactUs(){alert('📱 تواصل معنا:\nواتساب: +216 93243981\nتيليغرام: @KeyVaultTN');}
+function contactUs(){window.open('https://wa.me/21693243981','_blank');}
 
 init();
 </script>
